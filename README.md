@@ -1,7 +1,19 @@
 ember-data-stop-infinite-retry-for-failed-relationship-fetches
 ==============================================================================
 
-[Short description of the addon.]
+This addon is a workaround to unblock Ember upgrade during existed bug in ember-data (from 3.1.2 to 3.12): 
+
+**"infinite retry bug for failed relationship fetches"**
+
+> we're actually experiencing this issue with v3.1.2 (which we upgraded to for the fix for #4963). We're aiming to upgrade rapidly soon, but have a few blocking factors that we have to tackle first.
+
+(https://github.com/emberjs/data/pull/6112#issuecomment-519675040)
+
+related to:
+- https://github.com/emberjs/data/issues/5814
+- https://github.com/emberjs/data/issues/6467
+- https://github.com/emberjs/data/pull/5376
+- https://github.com/emberjs/data/pull/5541
 
 Installation
 ------------------------------------------------------------------------------
@@ -14,7 +26,25 @@ ember install ember-data-stop-infinite-retry-for-failed-relationship-fetches
 Usage
 ------------------------------------------------------------------------------
 
-[Longer description of how to use the addon in apps.]
+Change `app/adapters/application.js`:
+
+```JS
+import { inject as service } from '@ember/service';
+// ...
+export default ActiveModelAdapter.extend({
+  cacheResponse: service(),
+
+  handleResponse(status, headers, payload, requestData) {
+    // ...
+    if (status !== 200) {
+      this.get('cacheResponse').handle([status, payload, requestData]);
+    }
+
+    return this._super(status, headers, payload, requestData);
+  },
+  // ...
+});
+```
 
 
 Contributing
@@ -22,14 +52,14 @@ Contributing
 
 ### Installation
 
-* `git clone <repository-url>`
+* `git clone git@github.com:Mifrill/ember-data-stop-infinite-retry-for-failed-relationship-fetches.git`
 * `cd ember-data-stop-infinite-retry-for-failed-relationship-fetches`
 * `npm install`
 
 ### Linting
 
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
+* `yarn lint:js`
+* `yarn lint:js -- --fix`
 
 ### Running tests
 
