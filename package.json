@@ -1,13 +1,13 @@
 {
   "name": "ember-data-stop-infinite-retry-for-failed-relationship-fetches",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.1",
+  "description": "Workaround to avoid bug in ember-data: infinite retry for failed relationship fetches",
   "keywords": [
     "ember-addon"
   ],
-  "repository": "",
+  "repository": "https://github.com/Mifrill/ember-data-stop-infinite-retry-for-failed-relationship-fetches",
   "license": "MIT",
-  "author": "",
+  "author": "Aleksei Strizhak <alexey@teamsatchel.com>",
   "directories": {
     "doc": "doc",
     "test": "tests"
