@@ -12,6 +12,7 @@ This addon is a workaround to unblock Ember upgrade during existed bug in ember-
 related to:
 - https://github.com/emberjs/data/issues/5814
 - https://github.com/emberjs/data/issues/6467
+- https://github.com/emberjs/data/issues/5836
 - https://github.com/emberjs/data/pull/5376
 - https://github.com/emberjs/data/pull/5541
 
