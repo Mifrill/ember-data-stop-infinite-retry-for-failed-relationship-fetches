@@ -30,9 +30,10 @@ Usage
 Change `app/adapters/application.js`:
 
 ```JS
+import DS from 'ember-data';
 import { inject as service } from '@ember/service';
-// ...
-export default ActiveModelAdapter.extend({
+
+export default DS.JSONAPIAdapter.extend({
   cacheResponse: service(),
 
   handleResponse(status, headers, payload, requestData) {
@@ -46,6 +47,7 @@ export default ActiveModelAdapter.extend({
   // ...
 });
 ```
+compatible with https://github.com/adopted-ember-addons/active-model-adapter
 
 
 Contributing
