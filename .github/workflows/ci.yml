@@ -36,4 +36,4 @@ jobs:
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
       - name: Test
-        run: yarn test
+        run: ember try:each
