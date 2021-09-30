@@ -38,4 +38,36 @@ jobs:
       - name: Install ember-cli
         run: yarn global add ember-cli
       - name: Test
-        run: ember try:each
+        run: yarn test
+  try-scenarios:
+    name: 'Compatibility'
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ember-try-scenario:
+          - ember-3.2
+          - ember-3.3
+          - ember-3.4
+          - ember-3.5
+          - ember-3.6
+          - ember-3.7
+          - ember-3.8
+          - ember-3.9
+          - ember-3.10
+          - ember-3.11
+          - ember-3.12
+          - ember-3.13
+          - ember-3.14
+          - ember-3.15
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12.x'
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+      - name: Test
+        run: node_modules/.bin/ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup
